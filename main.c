@@ -105,9 +105,10 @@ int checkExp(char str[256]){
     }
 }
 
+//This method will return the character at the top of the stack, then lower the value of the top
 char pop()
 {
-    if (top == -1)
+    if (top == 0)
     {
         printf("expression is invalid\n");
         exit(0);
@@ -119,13 +120,18 @@ char pop()
     }
 }
 
-
+//This method will add onto the stack char 'a' at the top, then increase the value of top for further pushing.
 void push(char a)
 {
     stack[top] = a;
     top++;
 }
 
+//This method will return the most recent character added onto the stack. If the stack is empty, then the method will print a message to help the user correct this mistake.
 char peek(){
-    return (stack[top-1]);
+    if(top - 1 != -1){
+        return (stack[top-1]);
+    }
+    printf("nothing on stack to peek at");
+    return 'x';
 }
