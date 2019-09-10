@@ -1,11 +1,11 @@
 /**********************************************
  * Name: ERICK SAENZ-GARDEA                   *
- * Date: SEPT 8TH, 2019                       *
+ * Date: SEPT TH, 2019                       *
  * Assignment: Project 1 -Sequence and Order validation*
  * **********************************************
  *  This program will be able to read text files line-by-line and
  *  validate the bracket expression. If the brackets are miswritten, the program will
- *  specify which line the error is found*
+ *  specify which line the error is found
  *  *********************************************/
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,12 +14,10 @@
 int checkExp(char str[256]);
 void push(char);
 char pop();
-void find_top();
 char peek();
 
 int top = 0;
 char stack[100];
-char newStack[100];
 
 int main() {
     //This will open the test file in the working directory
@@ -33,7 +31,7 @@ int main() {
 
     //Converting the first line to an int for the loop.
     int lines =  atoi(fgets(output, sizeof(output), filePointer));
-    printf("there are %d lines\n", lines);
+    printf("There are %d lines\n", lines);
 
     int flag = 0;
     //iterating through the text file line-by-line.
@@ -60,14 +58,15 @@ int main() {
 
     fclose(filePointer);
     return 0;
-
-
 }
 
-// This method will check the string to see if the brackets match. If the brackets are balanced, then the method will return a 1.
+// This method will check the string to see if the brackets match.
+// If the brackets are balanced, then the method will return a 1.
+// Otherwise the method will return a '0'
 int checkExp(char str[256]){
     for (int i = 0; str[i] != '\0';i++)
     {
+        //Checking for brackets
         if (str[i] == '(' | str[i] == '[' | str[i] == '{' | str[i] == ')' | str[i] == ']' | str[i] == '}')
         {
             if(top == 0){
@@ -93,10 +92,11 @@ int checkExp(char str[256]){
                 else {
                     push(str[i]);
                 }
-
             }
         }
     }
+
+    //After iterating through the string, if the top of the stack is a the beginning, then all rackets found its match.
     if (top == 0) {
         return (1);
     }
@@ -108,6 +108,7 @@ int checkExp(char str[256]){
 //This method will return the character at the top of the stack, then lower the value of the top
 char pop()
 {
+    //idiot proofed 'if' statement.
     if (top == 0)
     {
         printf("expression is invalid\n");
